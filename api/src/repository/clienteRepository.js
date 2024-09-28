@@ -29,3 +29,13 @@ export async function cadastroCliente(nome, email, telefone) {
     return id;
 
 }
+
+// export async function buscar(email) {
+//     let comando = `
+//         select * from tb_cliente where ds_email = ? ;
+//     `;
+
+//     let registro = await database.query(comando, [email]);
+//     let info = registro[0];
+//     return info;
+// }

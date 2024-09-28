@@ -1,4 +1,5 @@
 create database feel_good_db;
+use feel_good_db;
 
 drop database feel_good_db;
 
@@ -33,15 +34,15 @@ sb_sobre         varchar(4000)
 
 drop table tb_infos_imoveis;
 
-create table tb_cadastro_cliente (
-id_cliete int primary key auto_increment,
-nm_nome varchar(200),
-em_email varchar(200) unique,
-tl_telefone varchar(50) unique,
+create table tb_cliente (
+id_cliente int primary key auto_increment,
+nm_cliente varchar(200),
+ds_email varchar(200) unique,
+ds_telefone varchar(50) unique,
 dt_cadastro date
 );
 
-select * from tb_cadastro_cliente;
+select * from tb_cliente where id_cliente = ?;
 
 drop table tb_cadastro_cliente;
 
@@ -51,6 +52,17 @@ nm_nome varchar(200),
 em_email varchar(200) unique,
 sn_senha varchar(50) unique
 );
+
+select 	id_cliente, nm_cliente, ds_email from tb_cadastro_cliente
+where 	ds_email = 'jvortelan@gmail.com'
+and 	ds_telefone = '11 99999-9999';
+
+select * from tb_cliente;
+
+insert into tb_cliente(nm_cliente, ds_email, ds_telefone)
+values ('viktor' ,'jvortelan@gmail.com', '11 99999-9999');
+
+drop table tb_cliente;
 
 insert into tb_loginADM(nm_nome, em_email, sn_senha)
 values ('Viktor Ortelan', 'jvortelan@gmail.com', 'jv20/08');

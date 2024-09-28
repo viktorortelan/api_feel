@@ -1,4 +1,4 @@
-import { cadastroCliente, loginCliente } from "../repository/clienteRepository.js";
+import { cadastroCliente, loginCliente} from "../repository/clienteRepository.js";
 
 import { Router } from "express";
 
@@ -11,7 +11,7 @@ endpoints.post('/login', async (req, resp) => {
 
         let x = await loginCliente(email, telefone);
 
-        if(!x)
+        if(!x[0])
             throw new Error("Credenciais invalidas");
             
 
@@ -19,7 +19,9 @@ endpoints.post('/login', async (req, resp) => {
 
     } catch (err) {
         
-        resp.status(404).send(err.message)
+        resp.status(404).send({
+            err: err.message
+        })
 
     }
 
@@ -48,5 +50,12 @@ endpoints.post('/cliente', async (req, resp) => {
     }
 
 })
+
+
+// endpoints.get('/buscar/:email', async (req, resp) => {
+//     let email = req.params.email;
+//     let registro = await buscar(email);
+//     resp.send(registro);
+// })
 
 export default endpoints;

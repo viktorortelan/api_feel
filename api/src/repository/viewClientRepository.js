@@ -2,7 +2,7 @@ import database from "./conn.js";
 
 const viewClient = async () => {
 
-  const cmd = `SELECT * FROM tb_cadastro_cliente`;
+  const cmd = `SELECT * FROM tb_cliente`;
 
   const x = await database.query(cmd, []);
   
