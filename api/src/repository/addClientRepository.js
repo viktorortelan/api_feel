@@ -1,13 +1,17 @@
 import database from "./conn.js";
 
-const addClient = async ( nm_nome, em_email, tl_telefone, dt_cadastro ) => {
+const addClient = async (data, email ) => {
 
-  const cmd = `INSERT INTO tb_cliente (nm_nome, em_email, tl_telefone, dt_cadastro) VALUES (?, ?, ?, ?)`;
+  const cmd = `
+              update tb_cliente
+              set dt_cadastro = ?
+              where ds_email = ?  
+  `;
 
-  const x = await database.query(cmd, [nm_nome, em_email, tl_telefone, dt_cadastro]);
-
-  return x[0];
-
+  const x = await database.query(cmd, [data, email]);
+  let registro = x[0];
+  return registro.affectedRows;
+  
 }
 
 export default addClient;

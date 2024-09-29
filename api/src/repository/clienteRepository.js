@@ -30,12 +30,15 @@ export async function cadastroCliente(nome, email, telefone) {
 
 }
 
-// export async function buscar(email) {
-//     let comando = `
-//         select * from tb_cliente where ds_email = ? ;
-//     `;
 
-//     let registro = await database.query(comando, [email]);
-//     let info = registro[0];
-//     return info;
-// }
+
+
+export async function buscar(email) {
+    let comando = `
+        select * from tb_cliente ;
+    `;
+
+    let registro = await database.query(comando);
+    let info = registro[0];
+    return info;
+}

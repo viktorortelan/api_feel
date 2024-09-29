@@ -31,14 +31,11 @@ endpoint.get('/viewImoveis', async (req, resp) => {
 
 });
 
-endpoint.post('/addClient/:nm_nome/:em_email/:tl_telefone/:dt_cadastro', async (req, resp) => {
+endpoint.put('/addClient/:data/:email', async (req, resp) => {
 
-  const { nm_nome, em_email, tl_telefone, dt_cadastro } = req.params;
-
-  const x = await addClient(nm_nome, em_email, tl_telefone, dt_cadastro);
-
-  resp.json({ nm_nome, em_email, tl_telefone, dt_cadastro });
-
+  const { data, email } = req.params;
+  await addClient(data, email);
+  resp.send();
 });
 
 endpoint.get('/viewClient', async (req, resp) => {

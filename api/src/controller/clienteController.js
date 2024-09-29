@@ -1,4 +1,4 @@
-import { cadastroCliente, loginCliente} from "../repository/clienteRepository.js";
+import { cadastroCliente, loginCliente, buscar} from "../repository/clienteRepository.js";
 
 import { Router } from "express";
 
@@ -52,10 +52,9 @@ endpoints.post('/cliente', async (req, resp) => {
 })
 
 
-// endpoints.get('/buscar/:email', async (req, resp) => {
-//     let email = req.params.email;
-//     let registro = await buscar(email);
-//     resp.send(registro);
-// })
+endpoints.get('/buscar', async (req, resp) => {
+    let registro = await buscar();
+    resp.send(registro);
+})
 
 export default endpoints;
