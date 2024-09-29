@@ -44,14 +44,13 @@ dt_cadastro date
 
 select * from tb_cliente where id_cliente = ?;
 
-drop table tb_cadastro_cliente;
+update tb_cliente
+set dt_cadastro = "2006-08-03"
+where ds_email = "tonin";
 
-create table tb_loginADM (
-id_adm int primary key auto_increment,
-nm_nome varchar(200),
-em_email varchar(200) unique,
-sn_senha varchar(50) unique
-);
+select * from tb_cliente;
+
+select*from tb_loginADM;
 
 select 	id_cliente, nm_cliente, ds_email from tb_cadastro_cliente
 where 	ds_email = 'jvortelan@gmail.com'
@@ -69,4 +68,16 @@ values ('Viktor Ortelan', 'jvortelan@gmail.com', 'jv20/08');
 
 select * from tb_infos_imoveis;
 
+create table tb_ADM (
+id_adm int primary key auto_increment,
+nm_adm varchar(200),
+ds_email varchar(200),
+ds_senha varchar(200)
+);
+
+insert into tb_ADM(nm_adm, ds_email, ds_senha)
+values ('adm' ,'adm', '1');
+
+
+-- select*from tb_ADM where ds_email = "jvortelan@gmail.com" and ds_senha = "1234";
 
