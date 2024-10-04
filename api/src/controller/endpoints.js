@@ -61,3 +61,12 @@ endpoint.post('/multer', m.single('img'), (req, resp) => {
 
 });
 
+endpoint.get('/verifyId/:id', async (req, resp) => {
+  
+  const { id } = req.params;
+  const x = await verifyId(id);
+  resp.send(x);
+
+});
+
+

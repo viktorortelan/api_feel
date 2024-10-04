@@ -30,9 +30,6 @@ export async function cadastroCliente(nome, email, telefone) {
 
 }
 
-
-
-
 export async function buscar(email) {
     let comando = `
         select * from tb_cliente ;
