@@ -6,6 +6,7 @@ import './src/repository/conn.js';
 import endpoint from './src/controller/endpoints.js';
 import clienteController from './src/controller/clienteController.js';
 import admController from './src/controller/admController.js';
+import gestaImoveisController from './src/controller/gestaImoveisController.js';
 
 
 const api = express();
@@ -14,6 +15,7 @@ api.use(express.json());
 api.use(clienteController);
 api.use(endpoint);
 api.use(admController);
+api.use(gestaImoveisController);
 
 
 api.listen(process.env.PORT, () => console.log('API!'));
