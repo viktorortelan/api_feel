@@ -44,11 +44,16 @@ st_suites         varchar(250),
 com_tamanho     varchar(250),
 vg_vagas         varchar(250),
 tt_titulo         varchar(200),
-sb_sobre         varchar(4000)
+sb_sobre         varchar(4000),
+corretor_responsavel INT,
+vendido BOOLEAN,
+FOREIGN KEY (corretor_responsavel) REFERENCES tb_corretores(id_corretor)
 ); 
 
-ALTER TABLE tb_infos_imoveis
-ADD COLUMN vendido BOOLEAN;
+SELECT COUNT(*) AS total_imoveis FROM tb_infos_imoveis;
+SELECT COUNT(*) AS total_corretores FROM tb_corretores;
+SELECT COUNT(*) AS total_clientes FROM tb_cliente;
+
 
 SELECT COUNT(*) AS total_vendidos
 FROM tb_infos_imoveis
@@ -79,11 +84,6 @@ FROM tb_infos_imoveis i
 INNER JOIN tb_corretores c
 ON i.corretor_responsavel = c.id_corretor;
 
-
-ALTER TABLE tb_infos_imoveis
-ADD COLUMN corretor_responsavel INT,
-ADD CONSTRAINT fk_corretor
-FOREIGN KEY (corretor_responsavel) REFERENCES tb_corretores(id_corretor);
 
 select * from tb_infos_imoveis;
 drop table tb_infos_imoveis;

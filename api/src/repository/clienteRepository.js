@@ -39,3 +39,12 @@ export async function buscar(email) {
     let info = registro[0];
     return info;
 }
+
+export async function totalCliente() {
+    let comando = `
+        SELECT COUNT(*) AS total_clientes FROM tb_cliente;
+    `;
+    let registro = await database.query(comando);
+    let fim = registro[0];
+    return fim[0];
+}

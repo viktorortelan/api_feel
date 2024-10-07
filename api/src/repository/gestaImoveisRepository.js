@@ -53,6 +53,17 @@ export async function removerImovel(id) {
 
 }
 
+
+export async function totalImoveis() {
+    let comando = `
+        SELECT COUNT(*) AS total_imoveis FROM tb_infos_imoveis;
+    `;
+    let registro = await database.query(comando);
+    let fim = registro[0];
+    return fim[0];
+}
+
+
 export async function updateVenda(id, vendido) {
     let comando = `
         UPDATE tb_infos_imoveis
@@ -63,4 +74,6 @@ export async function updateVenda(id, vendido) {
     let fim = registro[0];
     return fim.affectedRows; 
 }
+
+
 
