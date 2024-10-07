@@ -15,11 +15,11 @@ const m = multer({ storage });
 
 export default endpoint;
 
-endpoint.post('/addImoveis/:nm_imagem/:nm_galeria/:nm_apartamento/:st_status/:rg_regiao/:lc_localizacao/:st_suites/:com_tamanho/:vg_vagas/:tt_titulo/:sb_sobre/:corretor_responsavel', async (req, resp) => {
+endpoint.post('/addImoveis/:nm_imagem/:nm_galeria/:nm_apartamento/:st_status/:rg_regiao/:lc_localizacao/:st_suites/:com_tamanho/:vg_vagas/:tt_titulo/:sb_sobre/:corretor_responsavel/:vendido', async (req, resp) => {
 
-  const { nm_imagem, nm_galeria, nm_apartamento, st_status, rg_regiao, lc_localizacao, st_suites, com_tamanho, vg_vagas, tt_titulo, sb_sobre, corretor_responsavel } = req.params;
+  const { nm_imagem, nm_galeria, nm_apartamento, st_status, rg_regiao, lc_localizacao, st_suites, com_tamanho, vg_vagas, tt_titulo, sb_sobre, corretor_responsavel, vendido } = req.params;
 
-  const x = await addImoveis(nm_imagem, nm_galeria, nm_apartamento, st_status, rg_regiao, lc_localizacao, st_suites, com_tamanho, vg_vagas, tt_titulo, sb_sobre, corretor_responsavel);
+  const x = await addImoveis(nm_imagem, nm_galeria, nm_apartamento, st_status, rg_regiao, lc_localizacao, st_suites, com_tamanho, vg_vagas, tt_titulo, sb_sobre, corretor_responsavel, vendido);
 
   resp.send({ x });
 

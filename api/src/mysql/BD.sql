@@ -1,8 +1,6 @@
 create database feel_good_db;
 use feel_good_db;
 
-drop database feel_good_db;
-
 use feel_good_db;
 
 -- tabela para adicionar as images das informações dos imoveis.
@@ -49,6 +47,28 @@ tt_titulo         varchar(200),
 sb_sobre         varchar(4000)
 ); 
 
+ALTER TABLE tb_infos_imoveis
+ADD COLUMN vendido BOOLEAN;
+
+SELECT COUNT(*) AS total_vendidos
+FROM tb_infos_imoveis
+WHERE vendido = TRUE;
+
+SELECT COUNT(*) AS total_nao_vendidos
+FROM tb_infos_imoveis
+WHERE vendido = FALSE;
+
+select*from tb_infos_imoveis;
+
+SELECT tb_infos_imoveis.id_cardImovel AS ID, 
+		tb_infos_imoveis.nm_apartamento AS "Imóvel", 
+		tb_infos_imoveis.st_status AS Status, 
+		tb_corretores.nm_adm AS Corretor
+FROM tb_infos_imoveis
+INNER JOIN tb_corretores
+ON tb_infos_imoveis.corretor_responsavel = tb_corretores.id_corretor;
+
+
 SELECT i.id_cardImovel, 
        i.nm_apartamento, 
        i.st_status, 
@@ -69,8 +89,8 @@ select * from tb_infos_imoveis;
 drop table tb_infos_imoveis;
 
 update tb_infos_imoveis
-set corretor_responsavel = 2
-where id_cardImovel = 2;
+set vendido = false
+where id_cardImovel = 3;
 
 select*from tb_infos_imoveis;
 delete from tb_infos_imoveis where id_cardImovel = 1;
