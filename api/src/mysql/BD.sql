@@ -24,6 +24,12 @@ ds_senha varchar(200)
 
 select*from tb_corretores;
 
+update tb_corretores
+set nm_adm = ? ,
+	ds_email = ?,
+    ds_senha = ?
+where id_corretor = ?;
+
 
 INSERT INTO tb_corretores (nm_adm, ds_email, ds_senha) VALUES
 ("rola", "rola@fdhsagfhds", "15456");

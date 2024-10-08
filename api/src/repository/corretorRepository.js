@@ -40,3 +40,12 @@ export async function updateCorretor(nome, email, senha, id) {
         throw error; 
     }
 }
+
+export async function removerCorretor(id) {
+    let comando = `
+        delete tb_corretores WHERE id_corretor = ?
+    `;
+    let registro = await database.query(comando, [id]);
+    let fim = registro[0];
+    return registro.affectedRows;
+}

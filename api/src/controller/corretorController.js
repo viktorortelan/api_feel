@@ -1,4 +1,4 @@
-import { buscarCorretor, totalCorretor, updateCorretor} from "../repository/corretorRepository.js";
+import { buscarCorretor, totalCorretor, updateCorretor, removerCorretor} from "../repository/corretorRepository.js";
 import {Router} from 'express';
 
 const endpoint = Router();
@@ -32,6 +32,12 @@ endpoint.put('/atualizar/corretor/:nome/:email/:senha/:id', async (req, resp) =>
     }
 });
 
+
+endpoint.delete('/remover/corretor/:id', async (req, resp) => {
+    let id = req.params.id;
+    let registro = await removerCorretor(id);
+    resp.send();
+})
 
 
 export default endpoint;
