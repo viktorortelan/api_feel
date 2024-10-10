@@ -68,12 +68,12 @@ endpoints.get('/total/cliente', async (req, resp) => {
 endpoints.put('/atualizar/cliente/:nome/:email/:telefone/:id', async (req, resp) => {
     try {
         console.log(req.params); 
-        const { nome, email, telefone, id } = req.params;
-
-        let registro = await updateCliente(nome, email, telefone, id);
+        const { nome, email, telefone, id } = req.params; 
+        
+        let registro = await updateCliente(nome, email, telefone, id); 
         
         if (registro > 0) {
-            resp.status(200).send({ message: 'Cliente atualizado com sucesso!' });
+            resp.status(200).send({ message: 'Dados atualizados com sucesso!!' });
         } else {
             resp.status(404).send({ message: 'Cliente não encontrado.' });
         }
@@ -82,6 +82,7 @@ endpoints.put('/atualizar/cliente/:nome/:email/:telefone/:id', async (req, resp)
         resp.status(500).send({ message: 'Erro ao atualizar cliente.' });
     }
 });
+
 
 
 export default endpoints;

@@ -1,4 +1,4 @@
-import { buscarCorretor, totalCorretor, updateCorretor, removerCorretor} from "../repository/corretorRepository.js";
+import { buscarCorretor, totalCorretor, updateCorretor, removerCorretor, loginCorretor} from "../repository/corretorRepository.js";
 import {Router} from 'express';
 
 const endpoint = Router();
@@ -38,6 +38,22 @@ endpoint.delete('/remover/corretor/:id', async (req, resp) => {
     let registro = await removerCorretor(id);
     resp.send();
 })
+
+endpoint.post('/loginCorretor', async (req, resp) => {
+    try {
+        let {email, senha} = req.body;
+        let x = await loginCorretor(email, senha);
+        if(!x[0])
+            throw new Error("Credenciais invalidas");
+        resp.send(x[0]);
+    } catch (err) {
+        
+        resp.status(404).send({
+            err: err.message
+        })
+
+    }
+});
 
 
 export default endpoint;

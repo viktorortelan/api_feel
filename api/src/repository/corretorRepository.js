@@ -49,3 +49,18 @@ export async function removerCorretor(id) {
     let fim = registro[0];
     return registro.affectedRows;
 }
+
+
+export async function loginCorretor(email, senha) {
+    let comando = `
+        select id_corretor   id,
+                nm_adm    nome,
+                ds_email  email
+        from tb_corretores
+         where ds_email = ? and ds_senha = ?
+    `;
+
+    let registro = await database.query(comando, [email, senha]);
+    return registro[0];
+
+}

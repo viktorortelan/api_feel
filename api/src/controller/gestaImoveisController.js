@@ -1,4 +1,4 @@
-import { GestaoImoveisBuscar, vendasSim, vendasNao, removerImovel, updateVenda } from "../repository/gestaImoveisRepository.js";
+import { GestaoImoveisBuscar, vendasSim, vendasNao, removerImovel, updateVenda, totalImoveis, imovelPorCorretor } from "../repository/gestaImoveisRepository.js";
 import {Router} from 'express';
 
 const endpoint = Router();
@@ -28,6 +28,19 @@ endpoint.get('/buscaNao', async (req, res) => {
     }
 });
 
+endpoint.delete('/deletar/imovel/:id', async (req, resp) => {
+        let id = req.params.id;
+        let registro = await removerImovel(id);
+        resp.send();
+  });
+
+
+
+
+endpoint.get('/total/imoveis', async (req, resp) => {
+    let registro = await totalImoveis();
+    resp.send(registro)
+})
 
 endpoint.put('/atualizar/venda/:id', async (req, resp) => {
     let id = req.params.id;
@@ -40,6 +53,10 @@ endpoint.put('/atualizar/venda/:id', async (req, resp) => {
     resp.send({ success: true, affectedRows: registro }); 
 });
 
-
+endpoint.get('/imovelPorCorretor/:id', async (req, resp) => {
+    let id = req.params.id;
+    let busca = await imovelPorCorretor(id);
+    resp.send(busca)
+});
 
 export default endpoint;

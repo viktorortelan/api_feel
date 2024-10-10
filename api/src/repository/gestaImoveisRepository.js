@@ -76,4 +76,22 @@ export async function updateVenda(id, vendido) {
 }
 
 
+export async function imovelPorCorretor(id) {
+    let comando = `
+        SELECT tb_infos_imoveis.id_cardImovel   id, 
+                tb_infos_imoveis.nm_apartamento  imovel, 
+                tb_infos_imoveis.st_status   status, 
+                tb_corretores.nm_adm   corretor,
+                vendido
+        FROM tb_infos_imoveis
+        INNER JOIN tb_corretores 
+        ON tb_infos_imoveis.corretor_responsavel = tb_corretores.id_corretor
+        where tb_corretores.id_corretor = ?
+    `;
+
+    let registro = await database.query(comando, [id]);
+    let x = registro[0];
+    return x;
+}
+
 
